@@ -13,12 +13,10 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import clsx from 'clsx';
-
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: '100%',
@@ -41,9 +39,6 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-        backgroundColor: red[500],
-    },
 }));
 
 
@@ -51,14 +46,17 @@ const Table = ({ news }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     let key;
-    let noImage;
     const list = news.map((data, index) => {
         key = `article-${index}`
         const name = !data.author ? "" : `${data.author} from`;
-        const intro = data.content !== null ? data.content.replace(/[\+[0-9]{0,10} chars]$/gi, '') : 'Please visit page to see content';
+        const intro = data.content !== null ? data.content.replace(/[\\+[0-9]{0,10} chars]$/gi, '') : 'Please visit page to see content';
+        const sourceName = data.source.name.match(/^\S/);
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
         const handleExpandClick = (e) => {
             setExpanded(!expanded);
         }
+
         const socialShare = () => {
             if (navigator.share) {
                 navigator.share({
@@ -72,13 +70,11 @@ const Table = ({ news }) => {
         }
         return (
             <Card className={classes.card} key={key}>
-
                 <CardHeader
-
                     avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
-                            R
-                                </Avatar>
+                        <Avatar aria-label="Source" style={{ backgroundColor: `#${randomColor}` }}>
+                            {sourceName}
+                        </Avatar>
                     }
                     title={data.title}
                     subheader={`${name} ${data.source.name}`}

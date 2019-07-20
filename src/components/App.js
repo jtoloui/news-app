@@ -21,7 +21,6 @@ const App = () => {
         NewsApi.get()
             .then(result => setData(result.data.articles));
     }, []);
-
     const classes = useStyles();
     return (
         <Router>
