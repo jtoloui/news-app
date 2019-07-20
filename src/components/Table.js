@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const Table = ({ news }) => {
+const Table = ({ news, reload }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     let key;
@@ -53,7 +53,6 @@ const Table = ({ news }) => {
         const sourceName = data.source.name.match(/^\S/);
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
         let img; 
-        
         const handleExpandClick = (e) => {
             setExpanded(!expanded);
         }
@@ -87,7 +86,7 @@ const Table = ({ news }) => {
                 />
                 <CardMedia
                     className={classes.media}
-                    image={img}
+                    image={img || data.urlToImage}
                     title={data.title}
                 />
                 <CardContent>
@@ -130,6 +129,7 @@ const Table = ({ news }) => {
     })
     return (
         <div className="">
+            <button onClick={reload}>Reload</button>
             <Grid container>
                 <Grid item xs={12} md={8}>
                     {list}

@@ -21,13 +21,17 @@ const App = () => {
         NewsApi.get()
             .then(result => setData(result.data.articles));
     }, []);
+    const reload = () => {
+            NewsApi.get()
+                .then(result => setData(result.data.articles));
+    }
     const classes = useStyles();
     return (
         <Router>
             <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
                 <Switch>
                     <Route render={() => (
-                        <Table news={data} />
+                        <Table news={data} reload={reload} />
                     )} />
                 </Switch>
             </Suspense>
