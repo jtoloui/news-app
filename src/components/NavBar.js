@@ -89,9 +89,6 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
                     <MenuItem onClick={Tech}>Technology News</MenuItem>
                     <MenuItem onClick={TechCrunch}>Techcrunch</MenuItem>
                     <MenuItem onClick={Techradar}>Techradar</MenuItem>
-                    {/* <MenuItem onClick={Tech} >Technology News</MenuItem> */}
-                    {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-                    {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                 </Menu>
 
             </Toolbar>
