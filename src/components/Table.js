@@ -16,6 +16,7 @@ import {
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
+import '../scss/main.scss'
 
 const useStyles = makeStyles(theme => ({
     card: {
