@@ -39,6 +39,9 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    main: {
+        marginTop: '64px',
+    }
 }));
 
 
@@ -82,7 +85,7 @@ const Table = ({ news, reload }) => {
                         </Avatar>
                     }
                     title={data.title}
-                    subheader={`${name} ${data.source.name} Published at ${time}`}
+                    subheader={`${name} ${data.source.name} - Published at ${time}`}
 
                 />
                 <CardMedia
@@ -129,8 +132,8 @@ const Table = ({ news, reload }) => {
         )
     })
     return (
-        <div className="">
-            <button onClick={reload}>Reload</button>
+        <div className={classes.main}>
+            {/* <button onClick={reload}>Reload</button> */}
             <Grid container>
                 <Grid item xs={12} md={8}>
                     {list}

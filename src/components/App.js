@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import NavBar from './NavBar';
 
 import NewsApi from '../API/newsApi';
 
@@ -22,16 +23,20 @@ const App = () => {
             .then(result => setData(result.data.articles));
     }, []);
     const reload = () => {
-            NewsApi.get()
-                .then(result => setData(result.data.articles));
+        NewsApi.get()
+            .then(result => setData(result.data.articles));
     }
+
     const classes = useStyles();
     return (
         <Router>
             <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
                 <Switch>
                     <Route render={() => (
-                        <Table news={data} reload={reload} />
+                        <div>
+                            <NavBar results={data.length}/>
+                            <Table news={data} reload={reload} />
+                        </div>
                     )} />
                 </Switch>
             </Suspense>
