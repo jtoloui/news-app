@@ -27,7 +27,7 @@ const App = () => {
         <Router>
             <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
                 <Switch>
-                    <Route exact path="/" render={() => (
+                    <Route render={() => (
                         <Table news={data} />
                     )} />
                 </Switch>

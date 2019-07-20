@@ -51,6 +51,7 @@ const Table = ({ news }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     let key;
+    let noImage;
     const list = news.map((data, index) => {
         key = `article-${index}`
         const name = !data.author ? "" : `${data.author} from`;
