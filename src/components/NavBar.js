@@ -23,13 +23,15 @@ const useStyles = makeStyles(theme => ({
         },
     },
     dropDown: {
-        fontSize: '0.8rem',
-        marginLeft: 0,
+        fontSize: '13px',
+        marginLeft: 4,
+        padding: "0 10px",
         position: 'relative',
         color: '#fff',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1),
             width: 'auto',
+            
         },
     }
 }));
@@ -71,6 +73,8 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
             <Toolbar className={classes.NavBar}>
                 <Typography variant="h6" className={classes.title}>{`${navTitle} - Search Results ${results}`}</Typography>
                 <Button
+                    variant="outlined"
+                    color="inherit"
                     aria-controls="simple-menu"
                     aria-haspopup="true"
                     onClick={handleClick}
