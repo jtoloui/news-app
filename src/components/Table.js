@@ -52,11 +52,16 @@ const Table = ({ news }) => {
         const intro = data.content !== null ? data.content.replace(/[\\+[0-9]{0,10} chars]$/gi, '') : 'Please visit page to see content';
         const sourceName = data.source.name.match(/^\S/);
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
+        let img; 
+        
         const handleExpandClick = (e) => {
             setExpanded(!expanded);
         }
-
+        if (data.urlToImage ) {
+            if (!data.urlToImage.match(/https/)) {
+                img = data.urlToImage.replace(/(http)/, 'https');
+            }
+        }
         const socialShare = () => {
             if (navigator.share) {
                 navigator.share({
@@ -82,7 +87,7 @@ const Table = ({ news }) => {
                 />
                 <CardMedia
                     className={classes.media}
-                    image={data.urlToImage}
+                    image={img}
                     title={data.title}
                 />
                 <CardContent>
