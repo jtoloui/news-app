@@ -21,7 +21,14 @@ import '../scss/main.scss'
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: '100%',
-        marginBottom: '5%',
+        marginBottom: '5vh',
+        [theme.breakpoints.up('md')]: {
+            // width: '100%',
+            position: 'relative',
+            marginRight: '25%',
+            marginLeft: '25%',
+            marginBottom: '10vh',
+        },
     },
     media: {
         height: 0,
@@ -41,7 +48,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'rotate(180deg)',
     },
     main: {
-        marginTop: '64px',
+        marginTop: '84px',
     }
 }));
 
@@ -138,7 +145,7 @@ const Table = ({ news }) => {
     return (
         <div className={classes.main}>
             <Grid container>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={12}>
                     {list}
                 </Grid>
             </Grid>

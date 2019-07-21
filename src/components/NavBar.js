@@ -91,8 +91,8 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
                 >
                     <MenuItem onClick={Home}>Home</MenuItem>
                     <MenuItem onClick={Tech}>Technology News</MenuItem>
-                    <MenuItem onClick={TechCrunch}>Techcrunch</MenuItem>
-                    <MenuItem onClick={Techradar}>Techradar</MenuItem>
+                    <MenuItem onClick={TechCrunch}>TechCrunch</MenuItem>
+                    <MenuItem onClick={Techradar}>TechRadar</MenuItem>
                 </Menu>
 
             </Toolbar>
