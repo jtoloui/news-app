@@ -8,6 +8,7 @@ import {
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import CountUp from 'react-countup';
 
 const useStyles = makeStyles(theme => ({
     NavBar: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1),
             width: 'auto',
-            
+
         },
     }
 }));
@@ -71,7 +72,15 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
 
         <AppBar>
             <Toolbar className={classes.NavBar}>
-                <Typography variant="h6" className={classes.title}>{`${navTitle} - Search Results ${results}`}</Typography>
+                <Typography variant="h6" className={classes.title}>
+                    {`${navTitle} - Search Results `}
+                    <CountUp
+                        start={0}
+                        end={results}
+                        duration={2}
+                        decimals={0}
+                    />
+                </Typography>
                 <Button
                     variant="outlined"
                     color="inherit"
