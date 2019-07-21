@@ -44,16 +44,16 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar, reload, reloadState, reloadCSS}) => {
+const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar, NextWeb, reload, reloadState, reloadCSS }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [navTitle, setnavTitle] = React.useState('Home');
-console.log(reloadState);
+    console.log(reloadState);
 
     const reloader = () => {
         reload();
     }
-    
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     }
@@ -118,6 +118,7 @@ console.log(reloadState);
                     <MenuItem onClick={Tech}>Technology News</MenuItem>
                     <MenuItem onClick={TechCrunch}>TechCrunch</MenuItem>
                     <MenuItem onClick={Techradar}>TechRadar</MenuItem>
+                    <MenuItem onClick={NextWeb}>The Next Web</MenuItem>
                 </Menu>
             </Toolbar>
         </AppBar>

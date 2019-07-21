@@ -61,6 +61,13 @@ const App = () => {
         setReloadState(false);
         setReloadCSS('active');
     }
+    const NextWeb = () => {
+        axios.get(config.NextWeb)
+            .then(result => setData(result.data.articles));
+        setCall(config.NextWeb);
+        setReloadState(false);
+        setReloadCSS('active');
+    }
     const classes = useStyles();
     return (
         <Router>
@@ -73,7 +80,8 @@ const App = () => {
                             TechNews={TechNews}
                             HomeNews={HomeNews}
                             techcrunch={TechCrunch}
-                            techradar={Techradar}
+                                techradar={Techradar}
+                                NextWeb={NextWeb}
                             reload={reload}
                             reloadState={reloadState}
                             reloadCSS={reloadCSS}
