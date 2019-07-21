@@ -44,11 +44,10 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar, NextWeb, reload, reloadState, reloadCSS }) => {
+const NavBar = ({ NewSource, reload, reloadState, reloadCSS }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [navTitle, setnavTitle] = React.useState('Home');
-    console.log(reloadState);
 
     const reloader = () => {
         reload();
@@ -61,23 +60,28 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar, NextWeb, r
         setAnchorEl(null);
     }
     const Tech = () => {
-        TechNews();
+        NewSource('Technology');
         setnavTitle('Latest Tech News')
         setAnchorEl(null);
     }
     const Home = () => {
-        HomeNews();
+        NewSource('Home');
         setnavTitle('Home')
         setAnchorEl(null);
     }
     const TechCrunch = () => {
-        techcrunch();
+        NewSource('TechCrunch');
         setnavTitle('TechCrunch')
         setAnchorEl(null);
     }
     const Techradar = () => {
-        techradar();
+        NewSource('TechRadar');
         setnavTitle('TechRadar')
+        setAnchorEl(null);
+    }
+    const NextWeb = () => {
+        NewSource('NextWeb');
+        setnavTitle('The Next Web')
         setAnchorEl(null);
     }
 
