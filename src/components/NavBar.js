@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CountUp from 'react-countup';
+import { Cached } from '@material-ui/icons';
+import '../scss/refreshBtn.scss';
 
 const useStyles = makeStyles(theme => ({
     NavBar: {
@@ -34,18 +36,28 @@ const useStyles = makeStyles(theme => ({
             width: 'auto',
 
         },
+    },
+    reload: {
+        // height: '1.5em',
+        // width: '1.5em'
     }
+
 }));
 
-const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
+const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar, reload, reloadState, reloadCSS}) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [navTitle, setnavTitle] = React.useState('Home');
+console.log(reloadState);
 
-    function handleClick(event) {
+    const reloader = () => {
+        reload();
+    }
+    
+    const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     }
-    function handleClose() {
+    const handleClose = () => {
         setAnchorEl(null);
     }
     const Tech = () => {
@@ -68,10 +80,14 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
         setnavTitle('TechRadar')
         setAnchorEl(null);
     }
+
     return (
 
         <AppBar>
             <Toolbar className={classes.NavBar}>
+                <Button disabled={reloadState} className='reload-data' onClick={reloader}>
+                    <Cached className={`reload-${reloadCSS} ${classes.reload}`} />
+                </Button>
                 <Typography variant="h6" className={classes.title}>
                     {`${navTitle} - Search Results `}
                     <CountUp
@@ -89,7 +105,7 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
                     onClick={handleClick}
                     className={classes.dropDown}
                 >
-                    Open Menu
+                    Menu
                 </Button>
                 <Menu
                     id="simple-menu"
@@ -103,7 +119,6 @@ const NavBar = ({ results, TechNews, HomeNews, techcrunch, techradar }) => {
                     <MenuItem onClick={TechCrunch}>TechCrunch</MenuItem>
                     <MenuItem onClick={Techradar}>TechRadar</MenuItem>
                 </Menu>
-
             </Toolbar>
         </AppBar>
 
