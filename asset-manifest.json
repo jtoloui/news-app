@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/news-app/static/css/main.52e91428.chunk.css",
-    "main.js": "/news-app/static/js/main.7feb7f83.chunk.js",
+    "main.js": "/news-app/static/js/main.d280f2d0.chunk.js",
     "runtime~main.js": "/news-app/static/js/runtime~main.3b43eeef.js",
     "static/js/2.6bb41f76.chunk.js": "/news-app/static/js/2.6bb41f76.chunk.js",
     "static/js/3.26e149af.chunk.js": "/news-app/static/js/3.26e149af.chunk.js",
     "static/css/4.9556f663.chunk.css": "/news-app/static/css/4.9556f663.chunk.css",
     "static/js/4.7cf033cc.chunk.js": "/news-app/static/js/4.7cf033cc.chunk.js",
     "index.html": "/news-app/index.html",
-    "precache-manifest.f70d0351c7863db41f011483cbb17831.js": "/news-app/precache-manifest.f70d0351c7863db41f011483cbb17831.js",
+    "precache-manifest.708caaa2c09644796cf55d73a42dfdcb.js": "/news-app/precache-manifest.708caaa2c09644796cf55d73a42dfdcb.js",
     "service-worker.js": "/news-app/service-worker.js"
   }
 }
