@@ -15,12 +15,20 @@ import {
 } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import clsx from 'clsx';
+import '../scss/main.scss'
+
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: '100%',
-        marginBottom: '5%',
+        marginBottom: '5vh',
+        [theme.breakpoints.up('md')]: {
+            // width: '100%',
+            position: 'relative',
+            marginRight: '25%',
+            marginLeft: '25%',
+            marginBottom: '10vh',
+        },
     },
     media: {
         height: 0,
@@ -39,24 +47,29 @@ const useStyles = makeStyles(theme => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    main: {
+        marginTop: '84px',
+    }
 }));
 
 
-const Table = ({ news, reload }) => {
+const Table = ({ news }) => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     let key;
+
     const list = news.map((data, index) => {
         key = `article-${index}`
         const name = !data.author ? "" : `${data.author} from`;
         const intro = data.content !== null ? data.content.replace(/[\\+[0-9]{0,10} chars]$/gi, '') : 'Please visit page to see content';
         const sourceName = data.source.name.match(/^\S/);
+        const time = data.publishedAt.replace(/(T\d{0,2}.\d{0,2}.\d{0,2}.\d{0,100}Z)$/, '').split('-').reverse().join('-');
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-        let img; 
+        let img;
         const handleExpandClick = (e) => {
             setExpanded(!expanded);
         }
-        if (data.urlToImage ) {
+        if (data.urlToImage) {
             if (!data.urlToImage.match(/https/)) {
                 img = data.urlToImage.replace(/(http)/, 'https');
             }
@@ -72,6 +85,9 @@ const Table = ({ news, reload }) => {
 
             }
         }
+        if (data.urlToImage === null) {
+            data.urlToImage = 'https://images.unsplash.com/photo-1556740714-a8395b3bf30f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYxNjQ5fQ';
+        }
         return (
             <Card className={classes.card} key={key}>
                 <CardHeader
@@ -81,8 +97,7 @@ const Table = ({ news, reload }) => {
                         </Avatar>
                     }
                     title={data.title}
-                    subheader={`${name} ${data.source.name}`}
-
+                    subheader={`${name} ${data.source.name} - Published at ${time}`}
                 />
                 <CardMedia
                     className={classes.media}
@@ -128,10 +143,9 @@ const Table = ({ news, reload }) => {
         )
     })
     return (
-        <div className="">
-            <button onClick={reload}>Reload</button>
+        <div className={classes.main}>
             <Grid container>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={12}>
                     {list}
                 </Grid>
             </Grid>

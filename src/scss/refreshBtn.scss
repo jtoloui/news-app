@@ -1,0 +1,23 @@
+button.reload-data{
+    svg{
+        &.reload-active {
+        height: 1.5em;
+        width: 1.5em;
+        color: #ECF0F1;
+    }
+    &.reload-disabled{
+        color: #CCD1D1;
+        height: 1.5em;
+        width: 1.5em;
+        opacity: 0.2;
+    }
+}
+    &:disabled{
+        svg{
+            &.reload-disabled{
+                color: #CCD1D1;
+                opacity: 0.2;
+            }
+        }
+    }
+}
