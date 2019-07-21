@@ -43,7 +43,7 @@ const App = () => {
             case 'Technology':
                 axios.get(config.TechEndpoint)
                     .then(result => setData(result.data.articles));
-                setCall(config.HomeNews);
+                setCall(config.TechEndpoint);
                 setReloadState(false);
                 setReloadCSS('active');
                 break;
