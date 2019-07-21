@@ -1,0 +1,1 @@
+button.reload-data svg.reload-active{height:1.5em;width:1.5em;color:#ecf0f1}button.reload-data svg.reload-disabled{color:#ccd1d1;height:1.5em;width:1.5em;opacity:.2}button.reload-data:disabled svg.reload-disabled{color:#ccd1d1;opacity:.2}
