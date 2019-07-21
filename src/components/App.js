@@ -82,6 +82,7 @@ const App = () => {
                     <Route render={() => (
                         <div>
                             <NavBar
+                                ArticleCount={data.length}
                                 NewSource={fetchSource}
                                 reload={reload}
                                 reloadState={reloadState}

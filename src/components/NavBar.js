@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const NavBar = ({ NewSource, reload, reloadState, reloadCSS }) => {
+const NavBar = ({ArticleCount, NewSource, reload, reloadState, reloadCSS }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [navTitle, setnavTitle] = React.useState('Home');
@@ -96,7 +96,7 @@ const NavBar = ({ NewSource, reload, reloadState, reloadCSS }) => {
                     {`${navTitle} - Search Results `}
                     <CountUp
                         start={0}
-                        end={results}
+                        end={ArticleCount}
                         duration={2}
                         decimals={0}
                     />
