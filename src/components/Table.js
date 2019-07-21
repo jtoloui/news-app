@@ -63,7 +63,7 @@ const Table = ({ news }) => {
         const name = !data.author ? "" : `${data.author} from`;
         const intro = data.content !== null ? data.content.replace(/[\\+[0-9]{0,10} chars]$/gi, '') : 'Please visit page to see content';
         const sourceName = data.source.name.match(/^\S/);
-        const time = data.publishedAt.replace(/(T\d{0,2}.\d{0,2}.\d{0,2}.\d{0,100}Z)$/, '').split('-').reverse().join('-');
+        const date = data.publishedAt.replace(/(T\d{0,2}.\d{0,2}.\d{0,2}.\d{0,100}Z)$/, '').split('-').reverse().join('-');
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
         let img;
         const handleExpandClick = (e) => {
@@ -97,7 +97,7 @@ const Table = ({ news }) => {
                         </Avatar>
                     }
                     title={data.title}
-                    subheader={`${name} ${data.source.name} - Published at ${time}`}
+                    subheader={`${name} ${data.source.name} - Published on ${date}`}
                 />
                 <CardMedia
                     className={classes.media}

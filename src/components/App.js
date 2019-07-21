@@ -31,43 +31,49 @@ const App = () => {
         NewsApi.get()
             .then(result => setData(result.data.articles));
     }, []);
+    const fetchSource = (source) => {
+        switch (source) {
+            case 'Home':
+                axios.get(config.HomeNews)
+                    .then(result => setData(result.data.articles));
+                setCall(config.HomeNews);
+                setReloadState(false);
+                setReloadCSS('active');
+                break;
+            case 'Technology':
+                axios.get(config.TechEndpoint)
+                    .then(result => setData(result.data.articles));
+                setCall(config.HomeNews);
+                setReloadState(false);
+                setReloadCSS('active');
+                break;
+            case 'TechCrunch':
+                setData([]);
+                axios.get(config.techcrunch)
+                    .then(result => setData(result.data.articles));
+                setCall(config.techcrunch);
+                setReloadState(false);
+                setReloadCSS('active');
+                break;
+            case 'TechRadar':
+                axios.get(config.techradar)
+                    .then(result => setData(result.data.articles));
+                setCall(config.techradar);
+                setReloadState(false);
+                setReloadCSS('active');
+                break;
+            case 'NextWeb':
+                axios.get(config.NextWeb)
+                    .then(result => setData(result.data.articles));
+                setCall(config.NextWeb);
+                setReloadState(false);
+                setReloadCSS('active');
+                break;
+            default:
+                break;
+        }
+    }
     
-    const TechNews = () => {
-        axios.get(config.TechEndpoint)
-            .then(result => setData(result.data.articles));
-        setCall(config.TechEndpoint);
-        setReloadState(false);
-        setReloadCSS('active');
-    }
-    const HomeNews = () => {
-        axios.get(config.HomeNews)
-            .then(result => setData(result.data.articles));
-        setCall(config.HomeNews);
-        setReloadState(false);
-        setReloadCSS('active');
-    }
-    const TechCrunch = () => {
-        setData([]);
-        axios.get(config.techcrunch)
-            .then(result => setData(result.data.articles));
-            setCall(config.techcrunch);
-            setReloadState(false);
-            setReloadCSS('active');
-    }
-    const Techradar = () => {
-        axios.get(config.techradar)
-            .then(result => setData(result.data.articles));
-        setCall(config.techradar);
-        setReloadState(false);
-        setReloadCSS('active');
-    }
-    const NextWeb = () => {
-        axios.get(config.NextWeb)
-            .then(result => setData(result.data.articles));
-        setCall(config.NextWeb);
-        setReloadState(false);
-        setReloadCSS('active');
-    }
     const classes = useStyles();
     return (
         <Router>
@@ -76,15 +82,11 @@ const App = () => {
                     <Route render={() => (
                         <div>
                             <NavBar
-                            results={data.length}
-                            TechNews={TechNews}
-                            HomeNews={HomeNews}
-                            techcrunch={TechCrunch}
-                                techradar={Techradar}
-                                NextWeb={NextWeb}
-                            reload={reload}
-                            reloadState={reloadState}
-                            reloadCSS={reloadCSS}
+                                ArticleCount={data.length}
+                                NewSource={fetchSource}
+                                reload={reload}
+                                reloadState={reloadState}
+                                reloadCSS={reloadCSS}
                             />
                             <Table news={data} />
                         </div>
