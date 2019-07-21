@@ -8,7 +8,7 @@ import axios from 'axios'
 import config from '../config';
 import NewsApi from '../API/newsApi';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     progress: {
         position: 'absolute',
         top: '45%',
@@ -23,14 +23,26 @@ const App = () => {
     const [call, setCall] = React.useState(null);
     const [reloadState, setReloadState] = React.useState(true);
     const [reloadCSS, setReloadCSS] = React.useState('disabled');
+    const classes = useStyles();
 
     const reload = () => {
         axios.get(call).then(result => setData(result.data.articles));
     }
+
     useEffect(() => {
         NewsApi.get()
             .then(result => setData(result.data.articles));
     }, []);
+
+    const onTermSubmit = async (term) => {
+        axios.get(config.EveryThing + term)
+            .then(result => setData(result.data.articles));
+        setCall(config.EveryThing + term);
+        setReloadState(false);
+        setReloadCSS('active');
+    };
+
+
     const fetchSource = (source) => {
         switch (source) {
             case 'Home':
@@ -73,8 +85,7 @@ const App = () => {
                 break;
         }
     }
-    
-    const classes = useStyles();
+
     return (
         <Router>
             <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
@@ -87,6 +98,7 @@ const App = () => {
                                 reload={reload}
                                 reloadState={reloadState}
                                 reloadCSS={reloadCSS}
+                                onSearchSubmit={onTermSubmit}
                             />
                             <Table news={data} />
                         </div>
@@ -95,7 +107,7 @@ const App = () => {
             </Suspense>
         </Router >
     );
-
 }
+
 
 export default App;
