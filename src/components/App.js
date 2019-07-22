@@ -2,8 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import NavBar from './NavBar';
 
+import Footer from './Footer';
+import NavBar from './NavBar';
 import axios from 'axios'
 import config from '../config';
 import NewsApi from '../API/newsApi';
@@ -101,6 +102,7 @@ const App = () => {
                                 onSearchSubmit={onTermSubmit}
                             />
                             <Table news={data} />
+                            <Footer/>
                         </div>
                     )} />
                 </Switch>

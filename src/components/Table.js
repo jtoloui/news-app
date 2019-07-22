@@ -148,7 +148,6 @@ const Table = ({ news }) => {
                             aria-expanded={expanded}
                             aria-label="Show more"
                         >
-
                             <ExpandMoreIcon />
                         </IconButton>
                     </CardActions>
