@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '100%',
         marginBottom: '5vh',
         [theme.breakpoints.up('md')]: {
-            // width: '100%',
             position: 'relative',
             marginRight: '25%',
             marginLeft: '25%',
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '56.25%',
     },
     button: {
 
@@ -49,18 +48,6 @@ const useStyles = makeStyles(theme => ({
     },
     main: {
         marginTop: '84px',
-    },
-    error: {
-        position: 'absolute',
-        fontSize: '28px',
-        top: '50%',
-        left: '25%',
-        right: '10%',
-        fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-        [theme.breakpoints.up('sm')]: {
-            top: '50%',
-            left: '30%',
-        }
     },
 }));
 
@@ -94,6 +81,7 @@ const Table = ({ news }) => {
                 })
             } else {
                 console.log('n/a');
+
             }
         }
         if (data.urlToImage === null) {
