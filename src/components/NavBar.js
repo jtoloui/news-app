@@ -194,9 +194,7 @@ const NavBar = ({ ArticleCount, NewSource, reload, reloadState, reloadCSS, onSea
                             <SearchIcon />
                         </div>
                         <form onSubmit={onFormSubmit} className="ui form">
-
                             <InputBase
-
                                 placeholder="Search…"
                                 classes={{
                                     root: classes.inputRoot,
@@ -208,7 +206,6 @@ const NavBar = ({ ArticleCount, NewSource, reload, reloadState, reloadCSS, onSea
                             />
                         </form>
                     </div>
-
                 </Toolbar>
             </AppBar>
         </div>

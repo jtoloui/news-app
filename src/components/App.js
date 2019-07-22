@@ -15,7 +15,19 @@ const useStyles = makeStyles((theme) => ({
         top: '45%',
         left: '45%',
         height: '50vh',
-    }
+    },
+    error: {
+        position: 'absolute',
+        fontSize: '28px',
+        top: '50%',
+        left: '25%',
+        right: '10%',
+        fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+        [theme.breakpoints.up('sm')]: {
+            top: '50%',
+            left: '30%',
+        }
+    },
 }));
 
 const Table = lazy(() => import('./Table'));
@@ -101,8 +113,9 @@ const App = () => {
                                 reloadCSS={reloadCSS}
                                 onSearchSubmit={onTermSubmit}
                             />
-                            <Table news={data} />
-                            <Footer/>
+                            {data.length > 0 && <Table news={data} />}
+                            {data.length === 0 && <div className={classes.error}>Oops, this is awkward we can't find any articles!</div>}
+                            <Footer />
                         </div>
                     )} />
                 </Switch>
