@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '100%',
         marginBottom: '5vh',
         [theme.breakpoints.up('md')]: {
-            // width: '100%',
             position: 'relative',
             marginRight: '25%',
             marginLeft: '25%',
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '56.25%',
     },
     button: {
 
@@ -49,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
     main: {
         marginTop: '84px',
-    }
+    },
 }));
 
 
@@ -128,7 +127,6 @@ const Table = ({ news }) => {
                         aria-expanded={expanded}
                         aria-label="Show more"
                     >
-
                         <ExpandMoreIcon />
                     </IconButton>
                 </CardActions>
@@ -152,5 +150,4 @@ const Table = ({ news }) => {
         </div>
     )
 }
-
 export default Table;
