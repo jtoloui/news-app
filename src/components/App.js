@@ -104,8 +104,8 @@ const App = () => {
     }
     return (
         <Router>
-            <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
-                {!isFetching &&
+            {!isFetching &&
+                <Suspense fallback={<CircularProgress className={classes.progress} color="primary" />}>
                     <Switch>
                         <Route render={() => (
                             <div>
@@ -117,14 +117,14 @@ const App = () => {
                                     reloadCSS={reloadCSS}
                                     onSearchSubmit={onTermSubmit}
                                 />
-                                {data.length > 0 && <Table news={data}/>}
+                                {data.length > 0 && <Table news={data} />}
                                 <Footer />
                                 {totalResults === 0 && <div className={classes.error}>Oops, this is awkward we can't find any articles!</div>}
                             </div>
                         )} />
                     </Switch>
-                }
-            </Suspense>
+                </Suspense>
+            }
         </Router >
     );
 }
