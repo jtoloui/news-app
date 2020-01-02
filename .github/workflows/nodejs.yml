@@ -19,7 +19,7 @@ jobs:
             - name: npm install, build, and deploy
               run: |
                   npm ci
-                  npm run build
-                  npm run deploy
+                  npm run REACT_APP_API_KEY=${{ secrets.key }} build
+                  npm run REACT_APP_API_KEY=${{ secrets.key }} deploy
               env:
                   CI: true
