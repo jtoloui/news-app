@@ -19,8 +19,8 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - name: npm install, build, and deploy
               run: |
-                  git config --local user.email ${{ secrets.OWNER }}
-                  git config --local user.name ${{ secrets.NAME }}
+                  git config --local user.email "jamie@toloui.com"
+                  git config --local user.name "Jamie T"
                   npm ci
                   npm run build
                   npm run deploy
