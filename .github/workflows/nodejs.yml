@@ -23,4 +23,4 @@ jobs:
                   npm run deploy
               env:
                   CI: true
-                  REACT_APP_API_KEY: ${{ secrets.key }}
+                  REACT_APP_API_KEY: ${{ secrets.KEY }}
