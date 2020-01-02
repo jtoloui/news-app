@@ -20,7 +20,7 @@ jobs:
             - name: npm install, build, and deploy
               run: |
                   git config --local user.email "jamie@toloui.com"
-                  git config --local user.name "Jamie T"
+                  git config --local user.name "jtoloui"
                   npm ci
                   npm run build
                   npm run deploy
