@@ -45,84 +45,107 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		NewsApi.get().then(result => setData(result.data.articles));
+		NewsApi.get("/top-headlines", {
+			params: {
+				pageSize: 40,
+				sources:
+					"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web"
+			}
+		}).then(result => setData(result.data.articles));
 		setisFetching(false);
 	}, []);
 
 	const onTermSubmit = async term => {
-		axios
-			.get(config.EveryThing + term)
-			.then(
-				result =>
-					setData(result.data.articles) +
-					setTotalResults(result.data.totalResults)
-			);
+		NewsApi.get("everything", {
+			params: {
+				q: term
+			}
+		}).then(
+			result =>
+				setData(result.data.articles) +
+				setTotalResults(result.data.totalResults)
+		);
 		setCall(config.EveryThing + term);
 		setReloadState(false);
 		setReloadCSS("active");
 	};
 
-	console.log(totalResults);
-
 	const fetchSource = source => {
 		switch (source) {
 			case "Home":
-				axios
-					.get(config.HomeNews)
-					.then(
-						result =>
-							setData(result.data.articles) +
-							setTotalResults(result.data.totalResults)
-					);
+				NewsApi.get("/top-headlines", {
+					params: {
+						pageSize: 40,
+						sources:
+							"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web"
+					}
+				}).then(
+					result =>
+						setData(result.data.articles) +
+						setTotalResults(result.data.totalResults)
+				);
 				setCall(config.HomeNews);
 				setReloadState(false);
 				setReloadCSS("active");
 				break;
 			case "Technology":
-				axios
-					.get(config.TechEndpoint)
-					.then(
-						result =>
-							setData(result.data.articles) +
-							setTotalResults(result.data.totalResults)
-					);
+				NewsApi.get("/top-headlines", {
+					params: {
+						pagesize: 40,
+						category: "technology",
+						country: ["gb", "us"]
+					}
+				}).then(
+					result =>
+						setData(result.data.articles) +
+						setTotalResults(result.data.totalResults)
+				);
 				setCall(config.TechEndpoint);
 				setReloadState(false);
 				setReloadCSS("active");
 				break;
 			case "TechCrunch":
 				setData([]);
-				axios
-					.get(config.techcrunch)
-					.then(
-						result =>
-							setData(result.data.articles) +
-							setTotalResults(result.data.totalResults)
-					);
+				NewsApi.get("top-headlines", {
+					params: {
+						sources: "techcrunch",
+						pageSize: 40
+					}
+				}).then(
+					result =>
+						setData(result.data.articles) +
+						setTotalResults(result.data.totalResults)
+				);
 				setCall(config.techcrunch);
 				setReloadState(false);
 				setReloadCSS("active");
 				break;
 			case "TechRadar":
-				axios
-					.get(config.techradar)
-					.then(
-						result =>
-							setData(result.data.articles) +
-							setTotalResults(result.data.totalResults)
-					);
+				NewsApi.get("/top-headlines", {
+					params: {
+						pageSize: 40,
+						sources: "techradar"
+					}
+				}).then(
+					result =>
+						setData(result.data.articles) +
+						setTotalResults(result.data.totalResults)
+				);
 				setCall(config.techradar);
 				setReloadState(false);
 				setReloadCSS("active");
 				break;
 			case "NextWeb":
-				axios
-					.get(config.NextWeb)
-					.then(
-						result =>
-							setData(result.data.articles) +
-							setTotalResults(result.data.totalResults)
-					);
+				NewsApi.get("/top-headlines", {
+					params: {
+						pageSize: 40,
+						sources: "the-next-web"
+					}
+				}).then(
+					result =>
+						setData(result.data.articles) +
+						setTotalResults(result.data.totalResults)
+				);
 				setCall(config.NextWeb);
 				setReloadState(false);
 				setReloadCSS("active");

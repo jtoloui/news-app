@@ -1,6 +1,8 @@
 import axios from "axios";
-import config from "../ROUTES";
 
 export default axios.create({
-	baseURL: config.HomeNews
+	baseURL: "https://newsapi.org/v2",
+	headers: {
+		"x-api-key": process.env.REACT_APP_API_KEY
+	}
 });
