@@ -9,12 +9,12 @@ import axios from "axios";
 import config from "../ROUTES";
 import NewsApi from "../API/newsApi";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	progress: {
 		position: "absolute",
 		top: "45%",
 		left: "45%",
-		height: "50vh"
+		height: "50vh",
 	},
 	error: {
 		position: "absolute",
@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
 		fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
 		[theme.breakpoints.up("sm")]: {
 			top: "50%",
-			left: "30%"
-		}
-	}
+			left: "30%",
+		},
+	},
 }));
 
 const Table = lazy(() => import("./Table"));
@@ -41,7 +41,7 @@ const App = () => {
 	const classes = useStyles();
 
 	const reload = () => {
-		axios.get(call).then(result => setData(result.data.articles));
+		axios.get(call).then((result) => setData(result.data.articles));
 	};
 
 	useEffect(() => {
@@ -49,19 +49,19 @@ const App = () => {
 			params: {
 				pageSize: 40,
 				sources:
-					"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web"
-			}
-		}).then(result => setData(result.data.articles));
+					"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web",
+			},
+		}).then((result) => setData(result.data.articles));
 		setisFetching(false);
 	}, []);
 
-	const onTermSubmit = async term => {
+	const onTermSubmit = async (term) => {
 		NewsApi.get("everything", {
 			params: {
-				q: term
-			}
+				q: term,
+			},
 		}).then(
-			result =>
+			(result) =>
 				setData(result.data.articles) +
 				setTotalResults(result.data.totalResults)
 		);
@@ -70,20 +70,22 @@ const App = () => {
 		setReloadCSS("active");
 	};
 
-	const fetchSource = source => {
+	const fetchSource = (source) => {
 		switch (source) {
 			case "Home":
 				NewsApi.get("/top-headlines", {
 					params: {
 						pageSize: 40,
 						sources:
-							"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web"
-					}
-				}).then(
-					result =>
-						setData(result.data.articles) +
-						setTotalResults(result.data.totalResults)
-				);
+							"techcrunch, techradar, hacker-news, the-verge, wired, the-next-web",
+					},
+				})
+					.then(
+						(result) =>
+							setData(result.data.articles) +
+							setTotalResults(result.data.totalResults)
+					)
+					.catch((e) => console.log(e));
 				setCall(config.HomeNews);
 				setReloadState(false);
 				setReloadCSS("active");
@@ -93,10 +95,10 @@ const App = () => {
 					params: {
 						pagesize: 40,
 						category: "technology",
-						country: ["gb", "us"]
-					}
+						country: ["gb", "us"],
+					},
 				}).then(
-					result =>
+					(result) =>
 						setData(result.data.articles) +
 						setTotalResults(result.data.totalResults)
 				);
@@ -109,10 +111,10 @@ const App = () => {
 				NewsApi.get("top-headlines", {
 					params: {
 						sources: "techcrunch",
-						pageSize: 40
-					}
+						pageSize: 40,
+					},
 				}).then(
-					result =>
+					(result) =>
 						setData(result.data.articles) +
 						setTotalResults(result.data.totalResults)
 				);
@@ -124,10 +126,10 @@ const App = () => {
 				NewsApi.get("/top-headlines", {
 					params: {
 						pageSize: 40,
-						sources: "techradar"
-					}
+						sources: "techradar",
+					},
 				}).then(
-					result =>
+					(result) =>
 						setData(result.data.articles) +
 						setTotalResults(result.data.totalResults)
 				);
@@ -139,13 +141,15 @@ const App = () => {
 				NewsApi.get("/top-headlines", {
 					params: {
 						pageSize: 40,
-						sources: "the-next-web"
-					}
-				}).then(
-					result =>
-						setData(result.data.articles) +
-						setTotalResults(result.data.totalResults)
-				);
+						sources: "the-next-web",
+					},
+				})
+					.then(
+						(result) =>
+							setData(result.data.articles) +
+							setTotalResults(result.data.totalResults)
+					)
+					.catch((e) => console.log(e));
 				setCall(config.NextWeb);
 				setReloadState(false);
 				setReloadCSS("active");
@@ -177,7 +181,9 @@ const App = () => {
 										reloadCSS={reloadCSS}
 										onSearchSubmit={onTermSubmit}
 									/>
-									{data.length > 0 && <Table news={data} />}
+									{data.length > 0 && (
+										<Table key={data} news={data} />
+									)}
 									<Footer />
 									{totalResults === 0 && (
 										<div className={classes.error}>

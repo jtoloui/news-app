@@ -162,7 +162,7 @@ const Table = ({ news }) => {
 						<ExpandMoreIcon />
 					</IconButton>
 				</CardActions>
-				<Collapse in={expanded} timeout="auto" unmountOnExit>
+				<Collapse in={expanded} key={key} timeout="auto" unmountOnExit>
 					<CardContent>
 						<Typography paragraph className={classes.introText}>
 							{intro}
